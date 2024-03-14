@@ -16,8 +16,6 @@
         </div>
     </div>
     <div>
-        <button>comenzar partido</button>
+        <button (click)="comenzarPartido()" [disabled]="!botonHabilitado">comenzar partido</button>
     </div>
-    
-
 </section>
