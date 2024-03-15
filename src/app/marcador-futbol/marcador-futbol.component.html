@@ -1,8 +1,8 @@
 <section class="marcador__contenido" style="border: 1px solid rgb(77, 74, 74);" >
   <div class="marcador__nombreE" style="border: 1px solid rgb(231, 61, 61);">
-    <h2>{{equipo_1}}</h2>
+    <h2>equipo_1</h2>
     <span>VS</span>
-    <h2>{{equipo_2}}</h2>
+    <h2>equipo_2</h2>
   </div>
   <div class="marcador__goles" style="border: 2px solid rgb(34, 212, 212);">
     <h2>00</h2>
@@ -26,4 +26,7 @@
    <input type="number" [(ngModel)]="tiempoPersonalizado">
   </div>                                                                
 </section>
-<app-equipo-anotar (comenzarPartidoEven)="comenzarPartido()"></app-equipo-anotar>
+ <div [innerHTML]=""></div>
+<app-equipo-anotar (comenzarPartidoEven)="comenzarPartido()"
+[comenzarPartidoHabilitado]="comenzarHabilitado"
+></app-equipo-anotar>
