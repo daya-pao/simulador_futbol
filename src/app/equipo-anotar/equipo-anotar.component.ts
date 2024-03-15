@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, ComponentFactoryResolver, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-equipo-anotar',
@@ -8,14 +8,17 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrl: './equipo-anotar.component.css'
 })
 export class EquipoAnotarComponent {
-  @Output() iniciarPartido = new EventEmitter<void>();
+  
+  @Input() btnAnotarHabilitar:boolean = false;
+  @Output() comenzarPartidoEven = new EventEmitter<void>();
+  comenzarPartidoHabilitado:boolean = false;
 
-  botonHabilitado: boolean = true;
-  comenzarPartido(): void {
-    this.botonHabilitado = false;
+  comenzarpartido():void{
+    this.comenzarPartidoHabilitado=true;
+    this.btnAnotarHabilitar=false;
     alert("Evento 'iniciarPartido' recibido en el componente padre.");
-    this.iniciarPartido.emit();
+    this.comenzarPartidoEven.emit();
   }
-
+  
 
 }

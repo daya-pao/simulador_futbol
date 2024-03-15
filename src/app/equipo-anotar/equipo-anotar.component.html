@@ -4,18 +4,18 @@
             <h2>equipo_1</h2>
             <span>Empate</span>
             <div>
-                <button>Anotar</button>
+                <button [disabled]="!btnAnotarHabilitar">Anotar</button>
             </div>
         </div>
         <div class="equipo__anotar">
             <h2>equipo_1</h2>
             <span>Empate</span>
             <div>
-                <button>Anotar</button>
+                <button [disabled]="!btnAnotarHabilitar">Anotar</button>
             </div>
         </div>
     </div>
     <div>
-        <button (click)="comenzarPartido()" [disabled]="!botonHabilitado">comenzar partido</button>
+        <button [disabled]="comenzarPartidoHabilitado" (click)="comenzarpartido()">comenzar partido</button>
     </div>
 </section>
