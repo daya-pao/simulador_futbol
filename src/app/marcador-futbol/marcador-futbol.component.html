@@ -1,30 +1,39 @@
 <section class="marcador__contenido" style="border: 1px solid rgb(77, 74, 74);" >
-  <div class="marcador__nombreE" style="border: 1px solid rgb(231, 61, 61);">
-    <h2>equipo_1</h2>
-    <span>VS</span>
-    <h2>equipo_2</h2>
+
+  <div class="marcador__equipo" style="border: 1px solid rgb(231, 61, 61);">
+    <div class="marcador_nombre">
+      <div class="marcador_logo"><img src="assets/img/junior.png" alt=""></div>
+      <h2>equipo_1</h2>
+    </div>
+    <span class="marcador_vs"><img src="assets/img/vector_vs.png" alt=""></span>
+    <div class="marcador_nombre">
+      <h2>equipo_2</h2>
+      <div class="marcador_logo"><img class="logo_n" src="assets/img/nacional.png" alt=""></div>
+    </div>
   </div>
+
+
   <div class="marcador__goles" style="border: 2px solid rgb(34, 212, 212);">
-    <h2>00</h2>
-    <span>:</span>
-    <h2>00</h2>
-  </div> 
-  <div class="marcador__tiempo" style="border: 1px solid rgb(29, 185, 76);">
+    <div class="marcador_puntos"><h2>00</h2></div>
     <div>
       <p>Tiempo</p>
       <span>{{tiempoRestante}}</span>
     </div>
+    <div class="marcador_puntos"><h2>00</h2></div>
+  </div> 
+  <div class="marcador__tiempo" style="border: 1px solid rgb(29, 185, 76);">
+    <select (change)="seleccionarTiempo($event)">
+      <option value="1">1:00</option>
+      <option value="2">2:00</option>
+      <option value="5">5:00</option>
+      <option value="personalizado">Personalizado</option>
+   </select>
+    <div [@if]= "tiempoPersonalizado">
+     <label >Tiempo Personalizado:</label>
+     <input type="number" [(ngModel)]="tiempoPersonalizado">
+    </div>  
   </div>
-  <select (change)="seleccionarTiempo($event)">
-    <option value="1">1:00</option>
-    <option value="2">2:00</option>
-    <option value="5">5:00</option>
-    <option value="personalizado">Personalizado</option>
- </select>
-  <div [@if]= "tiempoPersonalizado">
-   <label >Tiempo Personalizado:</label>
-   <input type="number" [(ngModel)]="tiempoPersonalizado">
-  </div>                                                                
+                                                               
 </section>
  <div [innerHTML]=""></div>
 <app-equipo-anotar (comenzarPartidoEven)="comenzarPartido()"

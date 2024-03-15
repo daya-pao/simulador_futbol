@@ -2,10 +2,31 @@
     width: 40vw;
     margin: auto;
 }
-.marcador__nombreE{
+.marcador__equipo{
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    background-color: rgb(34, 34, 176);
+}
+.marcador_nombre{
+    display: flex;
+    background-color: white;
+}
+.marcador_logo{
+    border-radius: 2vw;
+    width:4vw;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.marcador_logo img{
+    width: 2.2vw;
+}
+.marcador_vs img{
+    width: 5vw;
+}
+.marcador__equipo span{
+    font-size: 3rem;
 }
 .marcador__goles{
     display: flex;
@@ -16,4 +37,17 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+.marcador_puntos{
+    border: 1px solid red;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10vh;
+    padding: 1rem;
+    width: 5vw;
+    font-size:4rem ;
+    border-bottom-left-radius: 20vw;
+    border-bottom-right-radius: 20vw;
 }
