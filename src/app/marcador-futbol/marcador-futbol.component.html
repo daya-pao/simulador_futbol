@@ -12,30 +12,43 @@
     </div>
   </div>
 
+  <div class="marcador__goles">
+    <div class="marcador_puntos"><h2>{{contador_Equipo_1}}</h2></div>
 
-  <div class="marcador__goles" style="border: 2px solid rgb(34, 212, 212);">
-    <div class="marcador_puntos"><h2>00</h2></div>
-    <div>
+    <div class="marcador_contenido">
       <p>Tiempo</p>
       <span>{{tiempoRestante}}</span>
+      <div class="marcador__tiempo" style="border: 1px solid rgb(29, 185, 76);">
+        <select (change)="seleccionarTiempo($event)">
+          <option value="1">1:00</option>
+          <option value="2">2:00</option>
+          <option value="5">5:00</option>
+          <option value="personalizado">Personalizado</option>
+       </select>
+        <div [@if]= "tiempoPersonalizado">
+         <label >Tiempo Personalizado:</label>
+         <input type="number" [(ngModel)]="tiempoPersonalizado">
+        </div>  
+      </div>
     </div>
-    <div class="marcador_puntos"><h2>00</h2></div>
+
+    <div class="marcador_puntos"><h2>{{contador_Equipo_2}}</h2></div>
   </div> 
-  <div class="marcador__tiempo" style="border: 1px solid rgb(29, 185, 76);">
-    <select (change)="seleccionarTiempo($event)">
-      <option value="1">1:00</option>
-      <option value="2">2:00</option>
-      <option value="5">5:00</option>
-      <option value="personalizado">Personalizado</option>
-   </select>
-    <div [@if]= "tiempoPersonalizado">
-     <label >Tiempo Personalizado:</label>
-     <input type="number" [(ngModel)]="tiempoPersonalizado">
-    </div>  
-  </div>
-                                                               
+  
+  <div class="div_mensaje"> <p [ngClass]="{'mensajeComienzo':mensaje === 'El partido comezara en:','mensajeTerminado':mensaje === '¡Tiempo agotado! Fin del partido'}">{{ mensaje }}</p></div>
+  <div class="div-circular">
+    <div class="contador">
+      <div class="loader_1"></div>
+      <h2>{{ contador }}</h2>
+      <div class="loader_2"></div>
+    </div>
+  </div>   
+
 </section>
- <div [innerHTML]=""></div>
 <app-equipo-anotar (comenzarPartidoEven)="comenzarPartido()"
 [comenzarPartidoHabilitado]="comenzarHabilitado"
+(GolAnotado)="marcadorGolAnotado($event)"
+[estadoPartido_1]="estadoEquipo_1"
+[estadoPartido_2]="estadoEquipo_2"
+
 ></app-equipo-anotar>

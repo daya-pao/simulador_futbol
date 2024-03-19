@@ -2,20 +2,26 @@
     <div class="equipo__caja">
         <div class="equipo__anotar">
             <h2>equipo_1</h2>
-            <span>Empate</span>
+            <span 
+            [ngClass]="{'mensaje_ganando':estadoPartido_1 === 'van ganando',
+             'mensaje_perdido':estadoPartido_1 === 'van perdiendo',
+             'mensaje_empate':estadoPartido_1 === 'Empate'}">{{estadoPartido_1}}</span>
             <div>
-                <button>Anotar</button>
+                <button (click)="Equipo_1_GolAnotado()" class="btnAnotar" [disabled]="comenzarPartidoHabilitado">Anotar</button>
             </div>
         </div>
         <div class="equipo__anotar">
-            <h2>equipo_1</h2>
-            <span>Empate</span>
+            <h2>equipo_2</h2>
+            <span 
+            [ngClass]="{'mensaje_ganando':estadoPartido_2 === 'van ganando',
+             'mensaje_perdido':estadoPartido_2 === 'van perdiendo',
+             'mensaje_empate':estadoPartido_2 === 'Empate'}">{{estadoPartido_2}}</span>
             <div>
-                <button >Anotar</button>
+                <button (click)="Equipo_2_GolAnotado()" class="btnAnotar" >Anotar</button>
             </div>
         </div>
     </div>
     <div>
-        <button [disabled]="comenzarPartidoHabilitado" (click)="comenzarpartido()">comenzar partido</button>
+        <button   (click)="comenzarpartido()" class="btnComenzarpartido">comenzar partido</button>
     </div>
 </section>

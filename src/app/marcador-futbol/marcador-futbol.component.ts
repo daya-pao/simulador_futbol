@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { EquipoAnotarComponent } from '../equipo-anotar/equipo-anotar.component';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-marcador-futbol',
   standalone: true,
-  imports: [FormsModule,EquipoAnotarComponent],
+  imports: [FormsModule,EquipoAnotarComponent,CommonModule],
   templateUrl: './marcador-futbol.component.html',
   styleUrl: './marcador-futbol.component.css'
 })
@@ -16,7 +17,13 @@ export class MarcadorFutbolComponent {
   tiempoRestante: string = "1:00";
   temporizador: any;
   comenzarHabilitado: boolean = true;
-  /*btnAnotarHabilitar:boolean = true; */
+  contador:number = 0;
+  mensaje:String = "";
+
+  contador_Equipo_1 :number = 0 ;
+  contador_Equipo_2 :number = 0 ;
+  estadoEquipo_1: string = "Empate";
+  estadoEquipo_2: string = "Empate";
 
   seleccionarTiempo(event: any): void {
     
@@ -26,11 +33,11 @@ export class MarcadorFutbolComponent {
     } else {
       this.tiempoSeleccionado = valorSeleccionado + ":00";
     }
-     this.comenzarHabilitado = false;
+     /* this.comenzarHabilitado = false; */
   }
 
   comenzarPartido(): void {
-    alert("El partido comenzará en 3, 2, 1...");
+    this.comenzarContador();
 
     let tiempoSeleccionadoS = parseInt(this.tiempoSeleccionado.split(":")[0]) * 60; 
 
@@ -44,12 +51,74 @@ export class MarcadorFutbolComponent {
 
       if (tiempoSeleccionadoS <= 0) {
         clearInterval(this.temporizador);
-        this.comenzarHabilitado = false;
-        alert("¡Tiempo agotado! Fin del partido.");
-         
-        /*this.btnAnotarHabilitar = false;  */
+        this.comenzarHabilitado = true;
+        
+        this.mensaje = "¡Tiempo agotado! Fin del partido";
+        setTimeout(()=>{this.mensaje= " " ;},5000);
+      }else if(tiempoSeleccionadoS === 5){
+        this.mensaje = "El partido se acabara en 6 segundos"
+      }
+
+
+      let equipoganador = ""
+      if(this.contador_Equipo_1 > this.contador_Equipo_2){
+        equipoganador = "equipo_1"
+      }else if(this.contador_Equipo_2 > this.contador_Equipo_1){
+        equipoganador = "equipo_2"
+      }else{
+        equipoganador = "empate"
+      }
+      
+
+      switch(equipoganador){
+        case "equipo_1":this.mensaje += "equipo 1 es el gandor"
+        break;
+
+        case "equipo_2": this.mensaje+= "equipo_2 es el ganador"
+        break;
+
+        case "empate":this.mensaje = "ambos quedaron empatados"
       }
     }, 1000);
-   /*  this.comenzarHabilitado = true; */
   }
+
+  comenzarContador(){
+    this.mensaje = "El partido comezara en:"
+    this.contador = 3;
+
+    const contadorTemporizador = setInterval(()=>{
+      this.contador --;
+      if(this.contador === 0){
+        clearInterval(contadorTemporizador);
+        this.mensaje = " ";
+      }
+    },1000);
+  }
+
+  marcadorGolAnotado(equipo : String){
+    if(equipo === 'equipo_1'){
+      this.contador_Equipo_1++;
+      this.actualizarMensaje();
+    }else{
+      this.contador_Equipo_2++;
+      this.actualizarMensaje();
+
+    }
+  }
+
+  actualizarMensaje(){
+    if (this.contador_Equipo_1 === this.contador_Equipo_2) {
+      this.estadoEquipo_1 = 'Empate';
+      this.estadoEquipo_2 = 'Empate';
+    }else if(this.contador_Equipo_1 > this.contador_Equipo_2){
+      this.estadoEquipo_1 = "van ganando"
+      this.estadoEquipo_2 = "van perdiendo"
+    }else if(this.contador_Equipo_1 < this.contador_Equipo_2){
+      this.estadoEquipo_1 = "van perdiendo"
+      this.estadoEquipo_2 = "van ganando"
+    }
+    
+  }
+  
 }
+
