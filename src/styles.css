@@ -2,3 +2,8 @@
 *{
     user-select: none;
 }
+body{
+    background-image: url("assets/img/vector-soccer.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}

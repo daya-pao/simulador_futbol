@@ -7,7 +7,7 @@
              'mensaje_perdido':estadoPartido_1 === 'van perdiendo',
              'mensaje_empate':estadoPartido_1 === 'Empate'}">{{estadoPartido_1}}</span>
             <div>
-                <button (click)="Equipo_1_GolAnotado()" class="btnAnotar" [disabled]="comenzarPartidoHabilitado">Anotar</button>
+                <button (click)="Equipo_1_GolAnotado()" class="btnAnotar" [disabled]="comenzarPartidoHabilitado" >Anotar</button>
             </div>
         </div>
         <div class="equipo__anotar">
@@ -17,7 +17,7 @@
              'mensaje_perdido':estadoPartido_2 === 'van perdiendo',
              'mensaje_empate':estadoPartido_2 === 'Empate'}">{{estadoPartido_2}}</span>
             <div>
-                <button (click)="Equipo_2_GolAnotado()" class="btnAnotar" >Anotar</button>
+                <button (click)="Equipo_2_GolAnotado()" class="btnAnotar" [disabled]="comenzarPartidoHabilitado" >Anotar</button>
             </div>
         </div>
     </div>

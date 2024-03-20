@@ -51,16 +51,15 @@ export class MarcadorFutbolComponent {
 
       if (tiempoSeleccionadoS <= 0) {
         clearInterval(this.temporizador);
-        this.comenzarHabilitado = true;
-        
         this.mensaje = "¡Tiempo agotado! Fin del partido";
+        
         setTimeout(()=>{this.mensaje= " " ;},5000);
       }else if(tiempoSeleccionadoS === 5){
-        this.mensaje = "El partido se acabara en 6 segundos"
+        this.mensaje = "El partido se acabara en 5 segundos"
       }
 
 
-      let equipoganador = ""
+      /* let equipoganador = ""
       if(this.contador_Equipo_1 > this.contador_Equipo_2){
         equipoganador = "equipo_1"
       }else if(this.contador_Equipo_2 > this.contador_Equipo_1){
@@ -78,7 +77,7 @@ export class MarcadorFutbolComponent {
         break;
 
         case "empate":this.mensaje = "ambos quedaron empatados"
-      }
+      } */
     }, 1000);
   }
 
@@ -90,8 +89,30 @@ export class MarcadorFutbolComponent {
       this.contador --;
       if(this.contador === 0){
         clearInterval(contadorTemporizador);
+        let equipoganador = ""
+      if(this.contador_Equipo_1 > this.contador_Equipo_2){
+        equipoganador = "equipo_1"
+      }else if(this.contador_Equipo_2 > this.contador_Equipo_1){
+        equipoganador = "equipo_2"
+      }else{
+        equipoganador = "empate"
+      }
+      ññ
+
+      switch(equipoganador){
+        case "equipo_1":this.mensaje += "equipo 1 es el gandor"
+        break;
+
+        case "equipo_2": this.mensaje+= "equipo_2 es el ganador"
+        break;
+
+        case "empate":this.mensaje = "ambos quedaron empatados"
+      } 
+        this.comenzarHabilitado = false
         this.mensaje = " ";
       }
+
+
     },1000);
   }
 
