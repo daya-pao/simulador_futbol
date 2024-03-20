@@ -28,7 +28,6 @@ export class EquipoAnotarComponent {
 
   comenzarpartido(){
     this.comenzarPartidoHabilitado=false;
-    alert("Evento 'iniciarPartido' recibido en el componente padre.");
     this.comenzarPartidoEven.emit();
   }
 

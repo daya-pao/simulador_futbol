@@ -17,6 +17,7 @@ export class MarcadorFutbolComponent {
   tiempoRestante: string = "1:00";
   temporizador: any;
   comenzarHabilitado: boolean = true;
+  ContadorHabilitar: boolean = false;
   contador:number = 0;
   mensaje:String = "";
 
@@ -36,9 +37,25 @@ export class MarcadorFutbolComponent {
      /* this.comenzarHabilitado = false; */
   }
 
-  comenzarPartido(): void {
-    this.comenzarContador();
 
+  comenzarContador(){
+    this.mensaje = "El partido comezara en:"
+    this.contador = 3;
+
+    const contadorTemporizador = setInterval(()=>{
+      this.contador --;
+      if(this.contador === 0){
+        clearInterval(contadorTemporizador);
+        this.comenzarPartido()
+      }
+    },1000);
+  }
+
+  
+
+  comenzarPartido(): void {
+    this.comenzarContador()
+    this.ContadorHabilitar = true;
     let tiempoSeleccionadoS = parseInt(this.tiempoSeleccionado.split(":")[0]) * 60; 
 
     this.temporizador = setInterval(() => {
@@ -51,70 +68,17 @@ export class MarcadorFutbolComponent {
 
       if (tiempoSeleccionadoS <= 0) {
         clearInterval(this.temporizador);
+        this.comenzarHabilitado = false;
         this.mensaje = "¡Tiempo agotado! Fin del partido";
         
         setTimeout(()=>{this.mensaje= " " ;},5000);
       }else if(tiempoSeleccionadoS === 5){
         this.mensaje = "El partido se acabara en 5 segundos"
       }
-
-
-      /* let equipoganador = ""
-      if(this.contador_Equipo_1 > this.contador_Equipo_2){
-        equipoganador = "equipo_1"
-      }else if(this.contador_Equipo_2 > this.contador_Equipo_1){
-        equipoganador = "equipo_2"
-      }else{
-        equipoganador = "empate"
-      }
-      
-
-      switch(equipoganador){
-        case "equipo_1":this.mensaje += "equipo 1 es el gandor"
-        break;
-
-        case "equipo_2": this.mensaje+= "equipo_2 es el ganador"
-        break;
-
-        case "empate":this.mensaje = "ambos quedaron empatados"
-      } */
     }, 1000);
   }
 
-  comenzarContador(){
-    this.mensaje = "El partido comezara en:"
-    this.contador = 3;
-
-    const contadorTemporizador = setInterval(()=>{
-      this.contador --;
-      if(this.contador === 0){
-        clearInterval(contadorTemporizador);
-        let equipoganador = ""
-      if(this.contador_Equipo_1 > this.contador_Equipo_2){
-        equipoganador = "equipo_1"
-      }else if(this.contador_Equipo_2 > this.contador_Equipo_1){
-        equipoganador = "equipo_2"
-      }else{
-        equipoganador = "empate"
-      }
-      ññ
-
-      switch(equipoganador){
-        case "equipo_1":this.mensaje += "equipo 1 es el gandor"
-        break;
-
-        case "equipo_2": this.mensaje+= "equipo_2 es el ganador"
-        break;
-
-        case "empate":this.mensaje = "ambos quedaron empatados"
-      } 
-        this.comenzarHabilitado = false
-        this.mensaje = " ";
-      }
-
-
-    },1000);
-  }
+ 
 
   marcadorGolAnotado(equipo : String){
     if(equipo === 'equipo_1'){
