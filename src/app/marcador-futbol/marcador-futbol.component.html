@@ -1,11 +1,11 @@
-<section class="marcador__contenido" style="border: 1px solid rgb(77, 74, 74);" >
+<section class="marcador__contenido">
 
-  <div class="marcador__equipo" style="border: 1px solid rgb(231, 61, 61);">
+  <div class="marcador__equipo">
     <div class="marcador_nombre">
       <div class="marcador_logo"><img src="assets/img/junior.png" alt=""></div>
       <h2>equipo_1</h2>
     </div>
-    <span class="marcador_vs"><img src="assets/img/vector_vs.png" alt=""></span>
+    <span class="marcador_vs"><img src="assets/img/vector_vs.png" class="img"></span>
     <div class="marcador_nombre">
       <h2>equipo_2</h2>
       <div class="marcador_logo"><img class="logo_n" src="assets/img/nacional.png" alt=""></div>
@@ -18,14 +18,14 @@
     <div class="marcador_contenido">
       <p>Tiempo</p>
       <span>{{tiempoRestante}}</span>
-      <div class="marcador__tiempo" style="border: 1px solid rgb(29, 185, 76);">
+      <div class="marcador__tiempo">
         <select (change)="seleccionarTiempo($event)">
           <option value="1">1:00</option>
           <option value="2">2:00</option>
           <option value="5">5:00</option>
           <option value="personalizado">Personalizado</option>
        </select>
-        <div [@if]= "tiempoPersonalizado">
+        <div [@if]= "tiempoPersonalizado" class="temporizador">
          <label >Tiempo Personalizado:</label>
          <input type="number" [(ngModel)]="tiempoPersonalizado">
         </div>  
@@ -35,11 +35,17 @@
     <div class="marcador_puntos"><h2>{{contador_Equipo_2}}</h2></div>
   </div> 
   
-  <div class="div_mensaje"> <p [ngClass]="{'mensajeComienzo':mensaje === 'El partido comezara en:','mensajeTerminado':mensaje === '¡Tiempo agotado! Fin del partido'}">{{ mensaje }}</p></div>
+  <div class="div_mensaje"> <p [ngClass]="{'mensajeComienzo':mensaje === 'El partido comezara en:',
+  'mensajeTerminado':mensaje === '¡Tiempo agotado! Fin del partido',
+  'mensaje5minutos':mensaje === 'El partido se acabara en 5 segundos',
+  'mensajeGanadorE_1':mensaje === 'El equipo_1 es el ganador','mensajeGanadorE_2':mensaje === 'El equipo_2 es el ganador',
+  'mensajeEmpate':mensaje === 'Ambos equipos Empatados'}">{{ mensaje }}</p></div>
+  
+  
   <div class="div-circular">
-    <div class="contador">
+    <div class="contador" >
       <div class="loader_1"></div>
-      <h2>{{ comenza }}</h2>
+      <h2>{{contador}}</h2>
       <div class="loader_2"></div>
     </div>
   </div>   
@@ -50,5 +56,4 @@
 (GolAnotado)="marcadorGolAnotado($event)"
 [estadoPartido_1]="estadoEquipo_1"
 [estadoPartido_2]="estadoEquipo_2"
-
 ></app-equipo-anotar>
